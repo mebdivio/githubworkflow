@@ -18,13 +18,13 @@ jobs:
       run: |
         docker-compose build
         docker-compose run web python manage.py migrate
-    - name: Deploy to Divio
-      env:
-        DIVIO_API_KEY: ${{ secrets.DIVIO_API_KEY }}
-        DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
-      if: github.ref == 'refs/heads/master' && job.status == 'success'
-      run: |
-        curl -X POST --data 'stage=env-DIVIO_PROJECT_NAME' --header "Authorization: Basic DIVIO_API_KEY" https://control.divio.com/api/v1/website/DIVIO_PROJECT_ID/deploy/
+    # - name: Deploy to Divio
+    #   env:
+    #     DIVIO_API_KEY: ${{ secrets.DIVIO_API_KEY }}
+    #     DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
+    #   if: github.ref == 'refs/heads/master' && job.status == 'success'
+    #   run: |
+    #     curl -X POST --data 'stage=env-DIVIO_PROJECT_NAME' --header "Authorization: Basic DIVIO_API_KEY" https://control.divio.com/api/v1/website/DIVIO_PROJECT_ID/deploy/
 
         # git remote add divio https://divio:$DIVIO_API_KEY@git.divio.com/$DIVIO_PROJECT_NAME.git
         # git push divio HEAD:master -f
