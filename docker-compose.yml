@@ -36,7 +36,5 @@ services:
     environment:
       POSTGRES_DB: "db"
       POSTGRES_HOST_AUTH_METHOD: "trust"
-    ports: 
-      - "8001:5432"
     volumes:
       - ".:/app:rw"
