@@ -24,9 +24,9 @@ jobs:
          DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
     #   if: github.ref == 'refs/heads/master' && job.status == 'success'
        run: |
-        divio project deploy
     #     curl -X POST --data 'stage=env-DIVIO_PROJECT_NAME' --header "Authorization: Basic DIVIO_API_KEY" https://control.divio.com/api/v1/website/DIVIO_PROJECT_ID/deploy/
 
-    #     git remote add divio https://divio:$DIVIO_API_KEY@git.divio.com/$DIVIO_PROJECT_NAME.git
-    #     git push divio HEAD:master -f
+         git remote add divio https://divio:$DIVIO_API_KEY@git.divio.com/$DIVIO_PROJECT_NAME.git
+         divio project deploy
+       # git push divio HEAD:master -f
         
