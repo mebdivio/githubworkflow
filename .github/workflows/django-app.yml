@@ -20,6 +20,7 @@ jobs:
         DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
       run: |
         git remote add divio https://divio:$DIVIO_API_KEY@git.divio.com/$DIVIO_PROJECT_NAME.git
+        git checkout divio
         git push divio HEAD:master -f
         
     - name: Install Django Axes Application
