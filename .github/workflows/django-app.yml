@@ -14,15 +14,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-   # - name: Install Django Axes Application
-   #   run: |
-   #     docker-compose build
-   #     docker-compose run web python manage.py migrate
-    - name: Deploy to Divio
+    - name: Set Divio Credentials 
       env:
         DIVIO_API_KEY: ${{ secrets.DIVIO_API_KEY }}
         DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
       run: |
-        docker-compose run web git remote add divio https://divio:$DIVIO_API_KEY@git.divio.com/$DIVIO_PROJECT_NAME.git
-        docker-compose run web git push divio HEAD:master -f
+        git remote add divio https://divio:$DIVIO_API_KEY@git.divio.com/$DIVIO_PROJECT_NAME.git
+        
+    - name: Install Django Axes Application
+      run: |
+        docker-compose build
+        docker-compose run web python manage.py migrate
+  #      git push divio HEAD:master -f
         
