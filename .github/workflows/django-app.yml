@@ -32,8 +32,6 @@ jobs:
         DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
       run: |
         divio login DIVIO_API_KEY
- #       git push divio HEAD:master -f
-        
     - name: Install Django Axes Application
       run: |
         docker-compose build
