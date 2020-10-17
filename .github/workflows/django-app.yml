@@ -28,7 +28,7 @@ jobs:
         pip install divio-cli
     - name: Set Divio Credentials 
       env:
-        DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
+        DIVIO_API_TOKEN: ${{secrets.DIVIO_API_TOKEN}}
         DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
       run: |
         divio login DIVIO_API_TOKEN
