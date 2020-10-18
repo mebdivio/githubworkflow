@@ -27,7 +27,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install divio-cli
     - name: Set Divio Credentials 
-      env:
+      with:
         divio_api_token: ${{ secrets.DIVIO_API_TOKEN }}
         # DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
       run: |
