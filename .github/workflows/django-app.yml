@@ -31,8 +31,9 @@ jobs:
         DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
         DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
       run: |
+        print(DIVIO_API_TOKEN)
         divio login DIVIO_API_TOKEN
-    # - name: Install Django Axes Application
-    #   run: |
-    #     docker-compose build
-    #     docker-compose run web python manage.py migrate
+    - name: Install Django Axes Application
+      run: |
+        docker-compose build
+        docker-compose run web python manage.py migrate
