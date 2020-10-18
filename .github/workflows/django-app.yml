@@ -27,12 +27,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install divio-cli
     - name: Set Divio Credentials 
-      env:
-        divio_api_token: ${{ secrets.DIVIO_API_TOKEN }}
-        # DIVIO_PROJECT_NAME: ${{ secrets.DIVIO_PROJECT_NAME }}   
       run: |
         divio login ${{ secrets.DIVIO_API_TOKEN }}
-    - name: Install Django Axes Application
-      run: |
-        docker-compose build
-        docker-compose run web python manage.py migrate
+        divio project deploy
+    # - name: Install Django Axes Application
+    #   run: |
+    #     docker-compose build
+    #     docker-compose run web python manage.py migrate
