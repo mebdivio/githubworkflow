@@ -16,10 +16,6 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: Install Divio CLI
-      run: |
-        python -m pip install --upgrade pip
-        pip install divio-cli
     - name: Set Divio Credentials copy .aldryn
       env:
         DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
@@ -27,6 +23,10 @@ jobs:
         DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
       run: |
         cp .aldryn config
+    - name: Install Divio CLI
+      run: |
+        python -m pip install --upgrade pip
+        pip install divio-cli
     - name: Deploy to Divio Cloud
       run: |
         divio login ${{ secrets.DIVIO_API_TOKEN }}
