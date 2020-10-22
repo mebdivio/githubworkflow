@@ -29,7 +29,7 @@ jobs:
         cp .aldryn config
     - name: Deploy to Divio Cloud
       run: |
-        divio login DIVIO_API_TOKEN
+        divio login ${{ secrets.DIVIO_API_TOKEN }}
         divio project deploy
   # Create the deleted Divio cli config file
     - name: Creating config.json
