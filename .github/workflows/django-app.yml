@@ -1,4 +1,4 @@
-# This workflow will install Divio CLI and deploy a Django Axes Application into Divio cloud
+# This workflow will install Divio CLI and deploy a Django Axes Application into the Divio cloud
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
 name: Django Axes application
@@ -26,7 +26,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install divio-cli
-    - name: Set Divio Credentials 
+    - name: Deploy to Divio Cloud
       run: |
         divio login ${{ secrets.DIVIO_API_TOKEN }}
         divio project deploy
