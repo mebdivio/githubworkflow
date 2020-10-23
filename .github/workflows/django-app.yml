@@ -8,6 +8,11 @@ on:
   
 jobs:
   build:
+    env:
+      DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
+      DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
+      DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
+
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,10 +21,10 @@ jobs:
       with:
         python-version: 3.8
     - name: copy .aldryn
-      env:
-        DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
-        DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
-        DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
+      # env:
+      #   DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
+      #   DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
+      #   DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
       run: |
         cp .aldryn config
     - name: Install Divio CLI
