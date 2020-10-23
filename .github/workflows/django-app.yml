@@ -20,11 +20,8 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: assign credentials and copy .aldryn to config
+    - name: copy .aldryn to config
       run: |
-        json -I -f .aldryn \
-        -e "this.DIVIO_PROJECT_ID='$(${{ secrets.DIVIO_PROJECT_ID }})'" 
-        -e "this.DIVIO_PROJECT_PLUG='$(${{ secrets.DIVIO_PROJECT_PLUG }})'" 
         cp .aldryn config
     - name: Install Divio CLI
       run: |
@@ -34,7 +31,7 @@ jobs:
       run: |
         divio login "$DIVIO_API_TOKEN"
         divio project deploy
-  # Create the deleted Divio cli config file
+  # Replacing the deleted Divio cli config file
     - name: Replace back .aldryn
       run: |
         cp config .aldryn
