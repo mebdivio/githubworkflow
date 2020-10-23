@@ -22,7 +22,7 @@ jobs:
         python-version: 3.8
     - name: copy .aldryn to config
       run: |
-        echo .aldryn.DIVIO_PROJECT_ID
+        echo $.aldryn.DIVIO_PROJECT_ID
         cp .aldryn config
     - name: Install Divio CLI
       run: |
