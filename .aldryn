@@ -1,4 +1,4 @@
 {
-    "id": DIVIO_PROJECT_ID,
-    "slug": "DIVIO_PROJECT_SLUG",
+    "id": ${{ secrets.DIVIO_PROJECT_ID }},
+    "slug": "${{ secrets.DIVIO_PROJECT_SLUG }}",
 }
