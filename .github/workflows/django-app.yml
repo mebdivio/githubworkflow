@@ -5,12 +5,13 @@ name: Divio Continuous Deployment
 on:
   push:
     branches: [ master ]
-  env:
-    DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
-    DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
-    DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
+  
 jobs:
   build:
+    env:
+      DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
+      DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
+      DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
 
     runs-on: ubuntu-latest
     steps:
