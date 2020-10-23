@@ -5,7 +5,10 @@ name: Divio Continuous Deployment
 on:
   push:
     branches: [ master ]
-  
+  env:
+    DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
+    DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
+    DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
 jobs:
   build:
 
@@ -16,11 +19,11 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: Set Divio Credentials copy .aldryn
-      env:
-        DIVIO_API_TOKEN: {{ secrets.DIVIO_API_TOKEN }}
-        DIVIO_PROJECT_ID: {{ secrets.DIVIO_PROJECT_ID }}   
-        DIVIO_PROJECT_SLUG: {{ secrets.DIVIO_PROJECT_SLUG }}
+    - name: copy .aldryn
+      # env:
+      #   DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
+      #   DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
+      #   DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
       run: |
         cp .aldryn config
     - name: Install Divio CLI
@@ -29,7 +32,7 @@ jobs:
         pip install divio-cli
     - name: Deploy to Divio Cloud
       run: |
-        divio login $DIVIO_API_TOKEN
+        divio login DIVIO_API_TOKEN
         divio project deploy
   # Create the deleted Divio cli config file
     - name: Creating config.json
