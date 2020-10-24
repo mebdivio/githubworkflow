@@ -20,9 +20,9 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: copy .aldryn to config
-      run: |
-        cp .aldryn config
+    # - name: copy .aldryn to config
+    #   run: |
+    #     cp .aldryn config
     - name: Install Divio CLI
       run: |
         python -m pip install --upgrade pip
@@ -30,9 +30,11 @@ jobs:
     - name: Deploy to Divio Cloud
       run: |
         divio login "$DIVIO_API_TOKEN"
-        divio project deploy
+        docker-compose build
+        docker-compose run web python manage.py migrate
+        # divio project deploy
   # Replacing the deleted Divio cli config file
-    - name: Replace back .aldryn
-      run: |
-        cp config .aldryn
-        rm -rf config
+    # - name: Replace back .aldryn
+    #   run: |
+    #     cp config .aldryn
+    #     rm -rf config
