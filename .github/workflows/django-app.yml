@@ -1,4 +1,4 @@
-# This workflow will install Divio CLI and deploy a Django Axes Application into the Divio cloud
+# This workflow will install Divio CLI and deploy a local project into the Divio cloud
 
 name: Divio Continuous Deployment
 
@@ -11,7 +11,6 @@ jobs:
     env:
       DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
       DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
-      DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
 
     runs-on: ubuntu-latest
     steps:
@@ -20,9 +19,6 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    # - name: copy .aldryn to config
-    #   run: |
-    #     cp .aldryn config
     - name: Install Divio CLI
       run: |
         python -m pip install --upgrade pip
@@ -31,8 +27,4 @@ jobs:
       run: |
         divio login "$DIVIO_API_TOKEN"
         divio project deploy --remote-id "$DIVIO_PROJECT_ID"
-  # Replacing the deleted Divio cli config file
-    # - name: Replace back .aldryn
-    #   run: |
-    #     cp config .aldryn
-    #     rm -rf config
+  
