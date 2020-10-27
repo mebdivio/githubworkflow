@@ -21,16 +21,16 @@ jobs:
       with:
         python-version: 3.8
 
-    - name: Deploy to Divio Cloud using the API
+    # - name: Deploy to Divio Cloud using the API
+    #   run: |
+    #     curl -X POST --data 'stage="$DIVIO_PROJECT_SLUG"' --header "Authorization: Basic "$DIVIO_API_TOKEN"" https://control.divio.com/api/v1/website/"$DIVIO_PROJECT_ID"/deploy/
+
+    - name: Install Divio CLI
       run: |
-        curl -X POST --data 'stage="$DIVIO_PROJECT_SLUG"' --header "Authorization: Basic "$DIVIO_API_TOKEN"" https://control.divio.com/api/v1/website/"$DIVIO_PROJECT_ID"/deploy/
-        
-    # - name: Install Divio CLI
-    #   run: |
-    #     python -m pip install --upgrade pip
-    #     pip install divio-cli
-    # - name: Deploy to Divio Cloud
-    #   run: |
-    #     divio login "$DIVIO_API_TOKEN"
-    #     divio project deploy --remote-id "$DIVIO_PROJECT_ID"
+        python -m pip install --upgrade pip
+        pip install divio-cli
+    - name: Deploy to Divio Cloud
+      run: |
+        divio login "$DIVIO_API_TOKEN"
+        divio project deploy --remote-id "$DIVIO_PROJECT_ID"
   
