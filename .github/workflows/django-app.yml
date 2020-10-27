@@ -30,9 +30,7 @@ jobs:
     - name: Deploy to Divio Cloud
       run: |
         divio login "$DIVIO_API_TOKEN"
-        docker-compose build
-        docker-compose run web python manage.py migrate
-        # divio project deploy
+        divio project deploy --remote-id "$DIVIO_PROJECT_ID"
   # Replacing the deleted Divio cli config file
     # - name: Replace back .aldryn
     #   run: |
