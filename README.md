@@ -1,4 +1,4 @@
-# githubworkflow - External repository for Continuous deployment with Github Actions on Divio
+# githubworkflow - External repository for Divio continuous deployment with Github Actions
 
 Setting up a deployment service environment for continuous deployment using Github Actions.
  
