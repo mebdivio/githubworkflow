@@ -1,4 +1,4 @@
-# This workflow will install Divio CLI and deploy a local project into the Divio cloud
+# This workflow will install Divio CLI and deploy into Divio on a push event
 
 name: Divio Continuous Deployment
 
@@ -13,19 +13,19 @@ jobs:
   # This workflow contains a single job called "deploy"
   deploy:
   
-  # Set the environment variables of the secret keys for easy access
+  # Setting environment variables of the secret keys for easy access
     env:
       DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
       DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}   
       # DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
   
-  # The type of runner that the job will run on
+  # The type of runner that this job will run on
     runs-on: ubuntu-latest
   # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    # Checks-out the repository under $GITHUB_WORKSPACE, so this job can access it
     - uses: actions/checkout@v2
-    # setup Python to be able to run pip to install Divio CLI
+    # setting up Python 3.8 to be able to run pip to install Divio CLI
     - name: Set up Python 3.8
       uses: actions/setup-python@v1
       with:
@@ -40,7 +40,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install divio-cli
     
-    # Login to Divio using the access token and deploy 
+    # Login to Divio and deploy 
     - name: Deploy to Divio
       run: |
         divio login "$DIVIO_API_TOKEN"
